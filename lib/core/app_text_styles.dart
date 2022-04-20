@@ -230,6 +230,14 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.bold,
   );
+
+  static final TextStyle p_bold_white_sublimed = GoogleFonts.montserrat(
+    color: AppColors.white0,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    decoration: TextDecoration.underline,
+  );
+
   static final TextStyle h7_light = GoogleFonts.montserrat(
     color: AppColors.black1,
     fontSize: 12,

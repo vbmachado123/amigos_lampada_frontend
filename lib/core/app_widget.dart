@@ -3,10 +3,18 @@ import 'package:lampada_frontend/page/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lampada_frontend/page/list/list_page.dart';
+import 'package:lampada_frontend/page/splash/splash_page.dart';
+import 'package:lampada_frontend/routes/fluro_router.dart';
 
-class AppWidget extends StatelessWidget {
+class AppWidget extends StatefulWidget {
   const AppWidget({Key? key}) : super(key: key);
 
+  @override
+  State<AppWidget> createState() => _AppWidgetState();
+}
+
+class _AppWidgetState extends State<AppWidget> {
   void _portraitModeOnly() {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -15,11 +23,16 @@ class AppWidget extends StatelessWidget {
   }
 
   @override
+  initState() {
+    Flurorouter.setupRouter();
+  }
+
+  @override
   Widget build(BuildContext context) {
     _portraitModeOnly();
 
-    print("Largura: ${Get.width}");
-    print("Altura: ${Get.height}");
+    // print("Largura: ${Get.width}");
+    // print("Altura: ${Get.height}");
     return GetMaterialApp(
       initialRoute: '/',
       color: AppColors.primary0,
@@ -36,8 +49,13 @@ class AppWidget extends StatelessWidget {
         primarySwatch: Colors.yellow,
         focusColor: AppColors.primary0,
       ),
+      onGenerateRoute: Flurorouter.router.generator,
       getPages: [
-        GetPage(name: '/', page: () => const HomePage()),
+        GetPage(
+            name: '/',
+            page: () => const ListPage(
+                  type: 'leader',
+                )),
       ],
     );
   }

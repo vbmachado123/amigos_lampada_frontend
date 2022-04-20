@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -37,6 +38,8 @@
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: Access-Control-Allow-Origin, Accept");
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
     function loadMainDartJs() {

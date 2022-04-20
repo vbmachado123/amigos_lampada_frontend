@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lampada_frontend/page/home/home_page.dart';
+import 'package:lampada_frontend/page/list/list_page.dart';
+import 'package:lampada_frontend/page/map/map_page.dart';
+import 'package:lampada_frontend/shared/widget/toolbar_item_widget.dart';
 
 import '../../core/core.dart';
 
@@ -28,6 +32,7 @@ class _ToolbarWidgetState extends State<ToolbarWidget> {
         ],
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -42,6 +47,54 @@ class _ToolbarWidgetState extends State<ToolbarWidget> {
                   style: AppTextStyles.h6_bold_white,
                 ),
               )
+            ],
+          ),
+          Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              ToolbarItemWidget(
+                label: "Dashboard",
+                isSelected: true,
+                page: HomePage(),
+              ),
+              ToolbarItemWidget(
+                label: "Mapa",
+                isSelected: false,
+                page: MapPage(),
+              ),
+              ToolbarItemWidget(
+                label: "Eleitores",
+                isSelected: false,
+                page: ListPage(
+                  type: 'voter',
+                ),
+              ),
+              ToolbarItemWidget(
+                label: "Colaboradores",
+                isSelected: false,
+                page: ListPage(
+                  type: 'leader',
+                ),
+              ),
+              SizedBox(
+                width: 72,
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Text(
+                "Olá, ",
+                style: AppTextStyles.p_bold_white,
+              ),
+              Text(
+                "admin",
+                style: AppTextStyles.p_regular_white,
+              ),
             ],
           ),
         ],
