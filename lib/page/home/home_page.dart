@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lampada_frontend/core/core.dart';
+import 'package:lampada_frontend/shared/widget/page_header_widget.dart';
 import 'package:lampada_frontend/shared/widget/toolbar_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +16,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: AppColors.white0,
       body: Column(children: [
-        ToolbarWidget(),
+        Row(
+          children: [
+            PageHeaderWidget(
+              label: "Dashboard",
+              color: AppColors.red_error,
+            ),
+          ],
+        )
       ]),
     );
   }

@@ -3,6 +3,7 @@ import 'package:lampada_frontend/page/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lampada_frontend/page/landing/landing_page.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({Key? key}) : super(key: key);
@@ -37,7 +38,7 @@ class AppWidget extends StatelessWidget {
         focusColor: AppColors.primary0,
       ),
       getPages: [
-        GetPage(name: '/', page: () => const HomePage()),
+        GetPage(name: '/', page: () => const LandingPage()),
       ],
     );
   }
