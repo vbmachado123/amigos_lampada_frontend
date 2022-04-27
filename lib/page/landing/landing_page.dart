@@ -3,26 +3,29 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lampada_frontend/core/core.dart';
 import 'package:lampada_frontend/page/home/home_page.dart';
+import 'package:lampada_frontend/page/landing/widget/menu_item_widget.dart';
 import 'package:lampada_frontend/page/list/list_page.dart';
 import 'package:lampada_frontend/page/map/map_page.dart';
 
 class LandingPage extends StatefulWidget {
-  const LandingPage({Key? key}) : super(key: key);
+  Widget? body;
+  LandingPage({Key? key, this.body}) : super(key: key);
 
   @override
   State<LandingPage> createState() => _LandingPageState();
 }
 
 class _LandingPageState extends State<LandingPage> {
-  late Widget body;
-
   @override
   void initState() {
     // body = HomePage();
     // body = MapPage();
-    body = ListPage(
-      type: ListType.voter,
-    );
+    if (widget.body.hashCode <= 0) {
+      widget.body = ListPage(
+        type: ListType.voter,
+      );
+    }
+
     super.initState();
   }
 
@@ -46,6 +49,7 @@ class _LandingPageState extends State<LandingPage> {
             ],
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
@@ -62,6 +66,42 @@ class _LandingPageState extends State<LandingPage> {
                   )
                 ],
               ),
+              Row(
+                children: [
+                  MenuItemWidget(label: "Dashboard", onTap: () {}),
+                  MenuItemWidget(
+                      label: "Colaboradores",
+                      onTap: () {
+                        widget.body = ListPage(type: ListType.leader);
+                        setState(() {});
+                        Get.offAll(LandingPage(
+                          body: ListPage(type: ListType.leader),
+                        ));
+                      }),
+                  MenuItemWidget(
+                      label: "Eleitores",
+                      onTap: () {
+                        widget.body = ListPage(type: ListType.voter);
+                        setState(() {});
+                        Get.offAll(LandingPage(
+                          body: ListPage(type: ListType.voter),
+                        ));
+                      }),
+                  MenuItemWidget(
+                      label: "Mapa",
+                      onTap: () {
+                        widget.body = MapPage();
+                        setState(() {});
+                      }),
+                  SizedBox(width: 64),
+                  Row(
+                    children: [
+                      Text("Olá, ", style: AppTextStyles.p_bold_white),
+                      Text("admin", style: AppTextStyles.p_regular_white),
+                    ],
+                  )
+                ],
+              ),
             ],
           ),
         ),
@@ -69,8 +109,12 @@ class _LandingPageState extends State<LandingPage> {
           padding: const EdgeInsets.all(32),
           width: double.maxFinite,
           height: Get.size.height - 72,
-          child: Center(
-            child: body,
+          child: PageView(
+            children: [
+              Center(
+                child: widget.body,
+              ),
+            ],
           ),
         )
       ]),

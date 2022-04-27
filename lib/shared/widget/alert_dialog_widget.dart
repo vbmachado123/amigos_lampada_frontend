@@ -34,7 +34,6 @@ class AlertDialogWidget extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
             currentBody,
           ],
         ),

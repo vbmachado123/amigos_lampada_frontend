@@ -38,7 +38,7 @@ class AppWidget extends StatelessWidget {
         focusColor: AppColors.primary0,
       ),
       getPages: [
-        GetPage(name: '/', page: () => const LandingPage()),
+        GetPage(name: '/', page: () => LandingPage()),
       ],
     );
   }

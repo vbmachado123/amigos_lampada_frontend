@@ -4,9 +4,10 @@ class ApiService {
   final Dio dio = Dio();
 
   // ignore: constant_identifier_names
-  static const String _BASE_URL = 'http://192.168.0.10:8080/api/v1';
+  // static String get _BASE_URL => 'http://192.168.0.10:8080/api/v1';
+  static const String _BASE_URL = 'http://188.34.166.175:8081/api/v1';
   // static const String _BASE_URL = 'http://192.168.0.110:8080/api/v1';
-
+  static String get URL => _BASE_URL;
   get(String url) async {
     print('Chamando API');
     try {

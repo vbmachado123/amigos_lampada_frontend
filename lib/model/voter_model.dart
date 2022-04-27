@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:lampada_frontend/model/address_model.dart';
 
+import 'leader_model.dart';
+
 class Voter {
   final String? id;
   final String? photo;
@@ -12,7 +14,8 @@ class Voter {
   final String? complement;
   final String? birthday;
   final Address? address;
-
+  final Leader? leader;
+  
   Voter({
     this.id,
     this.photo,
@@ -23,6 +26,7 @@ class Voter {
     this.complement,
     this.birthday,
     this.address,
+    this.leader,
   });
 
   Voter copyWith({
@@ -35,6 +39,7 @@ class Voter {
     String? complement,
     String? birthday,
     Address? address,
+    Leader? leader,
   }) {
     return Voter(
       id: id ?? this.id,
@@ -46,6 +51,7 @@ class Voter {
       complement: complement ?? this.complement,
       birthday: birthday ?? this.birthday,
       address: address ?? this.address,
+      leader: leader ?? this.leader,
     );
   }
 
@@ -60,6 +66,7 @@ class Voter {
       'complement': complement,
       'birthday': birthday,
       'address': address?.toMap(),
+      'leader': leader?.toMap(),
     };
   }
 
@@ -74,6 +81,7 @@ class Voter {
       complement: map['complement'],
       birthday: map['birthday'],
       address: map['address'] != null ? Address.fromMap(map['address']) : null,
+      leader: map['leader'] != null ? Leader.fromMap(map['leader']) : null,
     );
   }
 
@@ -83,7 +91,7 @@ class Voter {
 
   @override
   String toString() {
-    return 'Voter(id: $id, photo: $photo, name: $name, surname: $surname, phone: $phone, cep: $cep, complement: $complement, birthday: $birthday, address: $address)';
+    return 'Voter(id: $id, photo: $photo, name: $name, surname: $surname, phone: $phone, cep: $cep, complement: $complement, birthday: $birthday, address: $address, leader: $leader)';
   }
 
   @override
@@ -99,7 +107,8 @@ class Voter {
         other.cep == cep &&
         other.complement == complement &&
         other.birthday == birthday &&
-        other.address == address;
+        other.address == address &&
+        other.leader == leader;
   }
 
   @override
@@ -112,6 +121,7 @@ class Voter {
         cep.hashCode ^
         complement.hashCode ^
         birthday.hashCode ^
-        address.hashCode;
+        address.hashCode ^
+        leader.hashCode;
   }
 }

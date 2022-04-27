@@ -23,6 +23,9 @@ class _HomePageState extends State<HomePage> {
               color: AppColors.red_error,
             ),
           ],
+        ),
+        Row(
+          children: [],
         )
       ]),
     );
